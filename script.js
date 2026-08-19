@@ -47,14 +47,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Contact form (contact.html only) — demo success message, no real backend yet
+  // Contact form (contact.html only) — submits to Formspree (see form's action="") and shows
+  // inline success/error messages without leaving the page.
   const form = document.getElementById('contact-form');
   if (form) {
-    form.addEventListener('submit', (e) => {
+    const msg = document.getElementById('success-msg');
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const msg = document.getElementById('success-msg');
-      if (msg) msg.style.display = 'block';
-      form.reset();
+      const submitBtn = form.querySelector('button[type="submit"]');
+      if (submitBtn) submitBtn.disabled = true;
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          if (msg) {
+            msg.textContent = "Message sent. We'll reply within one business day.";
+            msg.style.color = '';
+            msg.style.display = 'block';
+          }
+          form.reset();
+        } else {
+          throw new Error('Form submission failed');
+        }
+      } catch (err) {
+        if (msg) {
+          msg.textContent = 'Something went wrong sending your message — please email us directly at info@wexfordsaunas.com.';
+          msg.style.color = '#a94435';
+          msg.style.display = 'block';
+        }
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
+      }
     });
   }
 
