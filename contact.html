@@ -66,21 +66,21 @@
 
       <div class="contact-layout">
         <div class="form-card" data-reveal>
-          <form id="contact-form">
+          <form id="contact-form" action="https://formspree.io/f/mrpzonrg" method="POST">
             <div class="form-row2">
-              <div class="form-field"><label for="c-name">Name</label><input id="c-name" type="text" placeholder="Your name" required></div>
-              <div class="form-field"><label for="c-phone">Phone</label><input id="c-phone" type="tel" placeholder="087 123 4567"></div>
+              <div class="form-field"><label for="c-name">Name</label><input id="c-name" name="name" type="text" placeholder="Your name" required></div>
+              <div class="form-field"><label for="c-phone">Phone</label><input id="c-phone" name="phone" type="tel" placeholder="087 123 4567"></div>
             </div>
-            <div class="form-field"><label for="c-email">Email</label><input id="c-email" type="email" placeholder="name@email.com" required></div>
+            <div class="form-field"><label for="c-email">Email</label><input id="c-email" name="email" type="email" placeholder="name@email.com" required></div>
             <div class="form-field">
               <label for="c-subject">Subject</label>
-              <select id="c-subject">
+              <select id="c-subject" name="subject">
                 <option>Get a quote</option>
                 <option>Delivery & assembly question</option>
                 <option>General question</option>
               </select>
             </div>
-            <div class="form-field"><label for="c-message">Message</label><textarea id="c-message" rows="5" placeholder="Which model, and your county — the more detail, the faster we can quote."></textarea></div>
+            <div class="form-field"><label for="c-message">Message</label><textarea id="c-message" name="message" rows="5" placeholder="Which model, and your county — the more detail, the faster we can quote."></textarea></div>
             <button type="submit" class="btn btn-primary full-width-btn">Send message</button>
             <div class="success-msg" id="success-msg">Message sent. We'll reply within one business day.</div>
           </form>
